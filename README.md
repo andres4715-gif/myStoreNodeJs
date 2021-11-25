@@ -12,6 +12,22 @@ $ npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
 $ npm run dev
 ```
 
+## FAKER:
+
+This is a fake date json generator that helps to make a fake data to test:
+
+- To install
+
+```shell
+$ npm i faker
+```
+
+- To import in a test clase:
+
+```text
+const faker = require('faker');
+```
+
 ## To run the express server in prod use this command line: (acording package.json file)
 
 ```shell

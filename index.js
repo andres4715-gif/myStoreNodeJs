@@ -1,4 +1,5 @@
 const express = require('express');
+const faker = require('faker');
 const app = express();
 const port = 3000;
 
@@ -87,10 +88,14 @@ app.get('/carros', (req, res) => {
   ]);
 });
 
-app.get('/carros/:id', (req, res) => {
-  const { id } = req.params;
+app.get('/carros2/', (req, res) => {
+  const { id, brand, color, model, description } = req.query;
   res.json({
     id,
+    brand,
+    color,
+    model,
+    description,
   });
 });
 
@@ -146,4 +151,32 @@ app.get('/devices', (req, res) => {
   } else {
     res.send('without devices');
   }
+});
+
+app.get('/myProducts', (req, res) => {
+  const products = [];
+  const { size } = req.query;
+  const limit = size || 10;
+  for (let index = 0; index < limit; index++) {
+    products.push({
+      name: faker.commerce.productName(),
+      price: parseInt(faker.commerce.price(), 10),
+      image: faker.image.imageUrl(),
+    });
+  }
+  res.json(products);
+});
+
+app.get('/available', (req, res) => {
+  const productsAvailable = [];
+  const { size } = req.query;
+  const limit = size || 10;
+  for (let index = 0; index < limit; index++) {
+    productsAvailable.push({
+      productName: faker.commerce.productName(),
+      price: parseInt(faker.commerce.price(), 10),
+      image: faker.image.imageUrl(),
+    });
+  }
+  res.json(productsAvailable);
 });
