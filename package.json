@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/routes/index.js",
   "scripts": {
-    "dev": "nodemon src/routes/index.js",
-    "start": "node src/routes/index.js",
+    "dev": "nodemon ./index.js",
+    "start": "node ./index.js",
     "lint": "eslint"
   },
   "keywords": [],
