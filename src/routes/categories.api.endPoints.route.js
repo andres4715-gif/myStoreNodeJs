@@ -12,6 +12,3 @@ router.get('/api/:categoryId/product/:productId', (req, res) => {
 });
 
 module.exports = router;
-
-
-

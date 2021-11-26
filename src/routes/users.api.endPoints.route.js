@@ -26,6 +26,3 @@ router.get('/api/usuarios/:user_firstName/:user_lastName/:user_id/', (req, res) 
 });
 
 module.exports = router;
-
-
-

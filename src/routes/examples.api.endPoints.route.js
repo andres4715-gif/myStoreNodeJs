@@ -51,6 +51,3 @@ router.get('/api/places', (req, res) => {
 });
 
 module.exports = router;
-
-
-
