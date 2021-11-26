@@ -11,4 +11,25 @@ router.get('/api/:categoryId/product/:productId', (req, res) => {
   });
 });
 
+router.get('/', (req, res) => {
+  const {categorieId, section, sector} = req.query;
+  if (categorieId && section && sector) {
+    res.json({
+      categorieId,
+      section,
+      sector
+    })
+  } else {
+    req.send('No category specified');
+  }
+})
+
+router.post('/', (req, res) => {
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body
+  })
+})
+
 module.exports = router;

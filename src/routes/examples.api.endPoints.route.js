@@ -3,8 +3,18 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.send('This is my server in express running!!');
-});
+  const {device, color, price, status} = req.query;
+  if (device && color && price && status) {
+    res.json({
+      device,
+      color,
+      price,
+      status
+    })
+  } else {
+    req.send('No device specified');
+  }
+})
 
 router.get('/new-path', (req, res) => {
   res.send('Hello I am a new endpoint');
@@ -49,5 +59,13 @@ router.get('/api/places', (req, res) => {
     ],
   });
 });
+
+router.post('/', (req, res) => {
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body
+  })
+})
 
 module.exports = router;
