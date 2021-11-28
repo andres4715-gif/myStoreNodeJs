@@ -31,7 +31,7 @@ router.get('/api/myProducts', (req, res) => {
   res.json(products);
 });
 
-router.get('/api/devices', (req, res) => {
+router.get('/api/devices/', (req, res) => {
   const {brand, color, price} = req.query;
   if (brand && color && price) {
     res.json({
@@ -44,23 +44,12 @@ router.get('/api/devices', (req, res) => {
   };
 });
 
-router.get('/api/cars/:marca/:color', (req, res) => {
+router.get('/api/myCars/:marca/:color/', (req, res) => {
   const marca = req.params.marca;
   const color = req.params.color;
   res.json({
     carro_marca: marca,
     carro_color: color,
-  });
-});
-
-router.get('/api/cars2/', (req, res) => {
-  const {id, brand, color, model, description} = req.query;
-  res.json({
-    id,
-    brand,
-    color,
-    model,
-    description,
   });
 });
 
@@ -95,6 +84,17 @@ router.get('/api/cars', (req, res) => {
       description: 'tres',
     },
   ]);
+});
+
+router.get('/api/cars2/', (req, res) => {
+  const {id, brand, color, model, description} = req.query;
+  res.json({
+    id,
+    brand,
+    color,
+    model,
+    description,
+  });
 });
 
 router.post('/', (req, res) => {
