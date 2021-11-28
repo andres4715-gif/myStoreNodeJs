@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const productsAvailable = [];
-  const { size } = req.query;
+  const {size} = req.query;
   const limit = size || 10;
   for (let index = 0; index < limit; index++) {
     productsAvailable.push({
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/api/myProducts', (req, res) => {
   const products = [];
-  const { size } = req.query;
+  const {size} = req.query;
   const limit = size || 10;
   for (let index = 0; index < limit; index++) {
     products.push({
@@ -32,7 +32,7 @@ router.get('/api/myProducts', (req, res) => {
 });
 
 router.get('/api/devices', (req, res) => {
-  const { brand, color, price } = req.query;
+  const {brand, color, price} = req.query;
   if (brand && color && price) {
     res.json({
       brand,
@@ -41,7 +41,7 @@ router.get('/api/devices', (req, res) => {
     });
   } else {
     res.send('without devices');
-  }
+  };
 });
 
 router.get('/api/cars/:marca/:color', (req, res) => {
@@ -54,7 +54,7 @@ router.get('/api/cars/:marca/:color', (req, res) => {
 });
 
 router.get('/api/cars2/', (req, res) => {
-  const { id, brand, color, model, description } = req.query;
+  const {id, brand, color, model, description} = req.query;
   res.json({
     id,
     brand,
@@ -103,6 +103,24 @@ router.post('/', (req, res) => {
     message: 'created',
     data: body
   });
-})
+});
+
+router.patch('/:id', (req, res) => {
+  const body = req.body;
+  const { id } = req.params.id;
+  res.json({
+    message: 'update',
+    data: body,
+    id,
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params.id;
+  res.json({
+    message: 'deleted',
+    id,
+  });
+});
 
 module.exports = router
