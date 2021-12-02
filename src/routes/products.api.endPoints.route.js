@@ -17,6 +17,21 @@ router.get('/', (req, res) => {
   res.json(productsAvailable);
 });
 
+router.get('/:id', (req, res) => {
+  const {id} = req.params;
+  if (id === '999') {
+    res.status(401).json({
+      message: 'not found4',
+    })
+  } else {
+    res.status(200).json({
+      id,
+      name: 'product 2',
+      price: 300
+    });
+  };
+});
+
 router.get('/api/myProducts', (req, res) => {
   const products = [];
   const {size} = req.query;
@@ -41,7 +56,8 @@ router.get('/api/devices/', (req, res) => {
     });
   } else {
     res.send('without devices');
-  };
+  }
+  ;
 });
 
 router.get('/api/myCars/:marca/:color/', (req, res) => {
@@ -99,7 +115,7 @@ router.get('/api/cars2/', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: 'created',
     data: body
   });
@@ -107,7 +123,7 @@ router.post('/', (req, res) => {
 
 router.patch('/:id', (req, res) => {
   const body = req.body;
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'update',
     data: body,
@@ -116,7 +132,7 @@ router.patch('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'product deleted',
     id,
