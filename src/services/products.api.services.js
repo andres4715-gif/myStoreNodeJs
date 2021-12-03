@@ -11,6 +11,8 @@ class ProductsServices {
     const limit = 100;
     for (let index = 0; index < limit; index++) {
       this.products.push({
+        id: faker.datatype.uuid(),
+        dataTypeNumber: faker.datatype.number(),
         productName: faker.commerce.productName(),
         price: parseInt(faker.commerce.price(), 10),
         image: faker.image.imageUrl(),
@@ -26,8 +28,8 @@ class ProductsServices {
     return this.products;
   }
 
-  findOne() {
-
+  findOne(id) {
+    return this.products.find(item => item.id === id);
   }
 
   update() {
