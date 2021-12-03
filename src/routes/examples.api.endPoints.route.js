@@ -27,7 +27,7 @@ router.get('/api/seriales/{user}/', (req, res) => {
   } else {
     return res.send(user2, 'not found!!');
   }
-});
+})
 
 router.get('/api/places', (req, res) => {
   res.json({
@@ -57,33 +57,33 @@ router.get('/api/places', (req, res) => {
         description: 'Estación de Medellin',
       },
     ],
-  });
-});
+  })
+})
 
 router.post('/', (req, res) => {
   const body = req.body;
   res.status(201).json({
     message: 'created',
     data: body
-  });
-});
+  })
+})
 
 router.patch('/:id', (req, res) => {
   const body = req.body;
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'updated',
     data: body,
     id,
-  });
-});
+  })
+})
 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'example deleted',
     id,
-  });
-});
+  })
+})
 
 module.exports = router;

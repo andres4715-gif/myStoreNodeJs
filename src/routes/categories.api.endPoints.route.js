@@ -8,8 +8,8 @@ router.get('/api/:categoryId/product/:productId/', (req, res) => {
   res.json({
     categoryId: category,
     producId: product,
-  });
-});
+  })
+})
 
 router.get('/', (req, res) => {
   const {categorieId, section, sector} = req.query;
@@ -29,25 +29,25 @@ router.post('/', (req, res) => {
   res.status(201).json({
     message: 'created',
     data: body
-  });
-});
+  })
+})
 
 router.patch('/:id', (req, res) => {
   const body = req.body;
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'updated',
     data: body,
     id,
-  });
-});
+  })
+})
 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'category deleted',
     id,
-  });
-});
+  })
+})
 
 module.exports = router;

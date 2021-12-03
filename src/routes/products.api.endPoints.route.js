@@ -1,20 +1,13 @@
-const express = require('express');
-const faker = require('faker');
+const ProductsServices = require('./../services/products.api.services')
 
+const service = new ProductsServices();
+
+const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  const productsAvailable = [];
-  const {size} = req.query;
-  const limit = size || 10;
-  for (let index = 0; index < limit; index++) {
-    productsAvailable.push({
-      productName: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
-    });
-  }
-  res.json(productsAvailable);
+  const products = service.find();
+  res.json(products);
 });
 
 router.get('/:id', (req, res) => {
@@ -28,23 +21,14 @@ router.get('/:id', (req, res) => {
       id,
       name: 'product 2',
       price: 300
-    });
-  };
-});
+    })
+  }
+})
 
 router.get('/api/myProducts', (req, res) => {
-  const products = [];
-  const {size} = req.query;
-  const limit = size || 10;
-  for (let index = 0; index < limit; index++) {
-    products.push({
-      name: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
-    });
-  }
+  const products = service.find();
   res.json(products);
-});
+})
 
 router.get('/api/devices/', (req, res) => {
   const {brand, color, price} = req.query;
@@ -57,8 +41,7 @@ router.get('/api/devices/', (req, res) => {
   } else {
     res.send('without devices');
   }
-  ;
-});
+})
 
 router.get('/api/myCars/:marca/:color/', (req, res) => {
   const marca = req.params.marca;
@@ -66,8 +49,8 @@ router.get('/api/myCars/:marca/:color/', (req, res) => {
   res.json({
     carro_marca: marca,
     carro_color: color,
-  });
-});
+  })
+})
 
 router.get('/api/cars', (req, res) => {
   res.json([
@@ -99,8 +82,8 @@ router.get('/api/cars', (req, res) => {
       model: '2013',
       description: 'tres',
     },
-  ]);
-});
+  ])
+})
 
 router.get('/api/cars2/', (req, res) => {
   const {id, brand, color, model, description} = req.query;
@@ -118,8 +101,8 @@ router.post('/', (req, res) => {
   res.status(201).json({
     message: 'created',
     data: body
-  });
-});
+  })
+})
 
 router.patch('/:id', (req, res) => {
   const body = req.body;
@@ -128,15 +111,15 @@ router.patch('/:id', (req, res) => {
     message: 'update',
     data: body,
     id,
-  });
-});
+  })
+})
 
 router.delete('/:id', (req, res) => {
   const {id} = req.params.id;
   res.json({
     message: 'product deleted',
     id,
-  });
-});
+  })
+})
 
 module.exports = router

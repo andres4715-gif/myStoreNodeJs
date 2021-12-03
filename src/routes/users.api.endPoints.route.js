@@ -26,7 +26,7 @@ router.get('/api/users', (req, res) => {
   } else {
     res.send('without params');
   }
-});
+})
 
 router.get('/api/usuarios/:user_firstName/:user_lastName/:user_id/', (req, res) => {
   const userFirstName = req.params.user_firstName;
@@ -36,8 +36,8 @@ router.get('/api/usuarios/:user_firstName/:user_lastName/:user_id/', (req, res) 
     userfirstname: userFirstName,
     userlastname: userlastName,
     userid: user_userid,
-  });
-});
+  })
+})
 
 router.post('/', (req, res) => {
   const body = req.body;
@@ -49,20 +49,20 @@ router.post('/', (req, res) => {
 
 router.patch('/:id', (req, res) => {
   const body = req.body;
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'updated',
     data: body,
     id,
-  });
-});
+  })
+})
 
 router.delete('/:id', (req, res) => {
-  const { id } = req.params.id;
+  const {id} = req.params.id;
   res.json({
     message: 'user deleted',
     id,
-  });
-});
+  })
+})
 
 module.exports = router;
