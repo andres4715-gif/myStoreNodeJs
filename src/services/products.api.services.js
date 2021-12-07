@@ -19,12 +19,20 @@ class ProductsServices {
           productName: faker.commerce.productName(),
           productDescription: faker.commerce.productDescription(),
           price: parseInt(faker.commerce.price(), 10),
+          finance: {
+            accountName: faker.finance.account(),
+            bic: faker.finance.bic(),
+          }
         },
         country: {
           city: faker.address.city(),
           cityPrefix: faker.address.cityName(),
           countryCode: faker.address.countryCode(),
         },
+        transactionDescription: {
+          dataInformation: faker.finance.transactionDescription(),
+          nameTitle: faker.name.suffix(),
+        }
       });
     }
   }
