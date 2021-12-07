@@ -13,9 +13,18 @@ class ProductsServices {
       this.products.push({
         id: faker.datatype.uuid(),
         dataTypeNumber: faker.datatype.number(),
-        productName: faker.commerce.productName(),
-        price: parseInt(faker.commerce.price(), 10),
         image: faker.image.imageUrl(),
+        details: {
+          productMaterial: faker.commerce.productMaterial(),
+          productName: faker.commerce.productName(),
+          productDescription: faker.commerce.productDescription(),
+          price: parseInt(faker.commerce.price(), 10),
+        },
+        country: {
+          city: faker.address.city(),
+          cityPrefix: faker.address.cityName(),
+          countryCode: faker.address.countryCode(),
+        },
       });
     }
   }
