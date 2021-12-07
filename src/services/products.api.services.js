@@ -4,6 +4,8 @@ class ProductsServices {
 
   constructor() {
     this.products = [];
+    this.devicesProducts = [];
+    this.dataDevicesGenerator();
     this.dataGenerator();
   }
 
@@ -37,8 +39,27 @@ class ProductsServices {
     }
   }
 
+  dataDevicesGenerator() {
+    const limit = 100;
+    for (let index = 0; index < limit; index++) {
+      this.devicesProducts.push({
+        id: faker.datatype.uuid(),
+        productName: faker.commerce.productName(),
+        company: faker.company.companyName(),
+        financeData: {
+          financeId: faker.finance.mask(),
+          financeIban: faker.finance.iban(),
+        }
+      })
+    }
+  }
+
   create() {
 
+  }
+
+  findDevicesList() {
+    return this.devicesProducts;
   }
 
   find() {
@@ -47,6 +68,19 @@ class ProductsServices {
 
   findOne(id) {
     return this.products.find(item => item.id === id);
+  }
+
+  findDevices(req, res) {
+    const {brand, color, price} = req.query;
+    if (brand && color && price) {
+      res.json({
+        brand,
+        color,
+        price,
+      });
+    } else {
+      res.send('without devices');
+    }
   }
 
   update() {
@@ -58,4 +92,5 @@ class ProductsServices {
   }
 }
 
-module.exports = ProductsServices;
+module
+  .exports = ProductsServices;

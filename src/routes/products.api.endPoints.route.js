@@ -22,16 +22,13 @@ router.get('/api/myProducts', (req, res) => {
 })
 
 router.get('/api/devices/', (req, res) => {
-  const {brand, color, price} = req.query;
-  if (brand && color && price) {
-    res.json({
-      brand,
-      color,
-      price,
-    });
-  } else {
-    res.send('without devices');
-  }
+  const products = service.findDevices(req, res);
+  res.json(products);
+})
+
+router.get('/api/devices/list/', (req, res) => {
+  const products = service.findDevicesList();
+  res.json(products);
 })
 
 router.get('/api/myCars/:marca/:color/', (req, res) => {
