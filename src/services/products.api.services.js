@@ -106,6 +106,21 @@ class ProductsServices {
     }
   }
 
+  carsBrandAndColor(req, res) {
+    const brand = req.params.brand;
+    const color = req.params.color;
+    const price = req.params.price;
+    if (brand && color && price) {
+      res.json({
+        brand,
+        color,
+        price,
+      });
+    } else {
+      res.send('without any cars information');
+    }
+  }
+
   update() {
 
   }

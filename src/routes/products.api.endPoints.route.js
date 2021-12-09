@@ -31,18 +31,14 @@ router.get('/api/devices/list/', (req, res) => {
   res.json(products);
 })
 
-router.get('/api/myCars/:marca/:color/', (req, res) => {
-  const marca = req.params.marca;
-  const color = req.params.color;
-  res.json({
-    carro_marca: marca,
-    carro_color: color,
-  })
-})
-
 router.get('/api/cars', (req, res) => {
   const carsPrducts = service.findCartList();
   res.json(carsPrducts);
+})
+
+router.get('/api/myCars/:brand/:color/:price', (req, res) => {
+  const carsList = service.carsBrandAndColor(req, res);
+  res.json(carsList)
 })
 
 router.get('/api/cars2/', (req, res) => {
