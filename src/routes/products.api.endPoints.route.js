@@ -41,36 +41,8 @@ router.get('/api/myCars/:marca/:color/', (req, res) => {
 })
 
 router.get('/api/cars', (req, res) => {
-  res.json([
-    {
-      id: 1,
-      brand: 'Chevrolet',
-      color: 'write',
-      model: '2011',
-      description: 'aveo gt',
-    },
-    {
-      id: 2,
-      brand: 'Chevrolet',
-      color: 'green',
-      model: '1993',
-      description: 'swith',
-    },
-    {
-      id: 3,
-      brand: 'Renault',
-      color: 'green',
-      model: '2005',
-      description: 'expression',
-    },
-    {
-      id: 4,
-      brand: 'Mazda',
-      color: 'gray',
-      model: '2013',
-      description: 'tres',
-    },
-  ])
+  const carsPrducts = service.findCartList();
+  res.json(carsPrducts);
 })
 
 router.get('/api/cars2/', (req, res) => {

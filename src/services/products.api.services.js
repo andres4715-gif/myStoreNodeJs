@@ -5,7 +5,9 @@ class ProductsServices {
   constructor() {
     this.products = [];
     this.devicesProducts = [];
+    this.cartListProducts = [];
     this.dataDevicesGenerator();
+    this.carsList();
     this.dataGenerator();
   }
 
@@ -54,8 +56,29 @@ class ProductsServices {
     }
   }
 
+  carsList() {
+    const limit = 17;
+    for (let index = 0; index < limit; index++) {
+      this.cartListProducts.push({
+        id: faker.datatype.uuid(),
+        product: faker.vehicle.type(),
+        model: faker.vehicle.model(),
+        color: faker.vehicle.color(),
+        manofacturer: faker.vehicle.manufacturer(),
+        financeData: {
+          financeId: faker.finance.mask(),
+          financeIban: faker.finance.iban(),
+        }
+      })
+    }
+  }
+
   create() {
 
+  }
+
+  findCartList() {
+    return this.cartListProducts;
   }
 
   findDevicesList() {
