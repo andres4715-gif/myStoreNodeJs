@@ -1,19 +1,14 @@
+const ProductsServices = require('./../services/users.api.services');
+
+const service = new ProductsServices();
+
 const express = require('express');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  const {id, firstName, lastName, age} = req.query;
-  if (id && firstName && lastName && age) {
-    res.json({
-      id,
-      firstName,
-      lastName,
-      age
-    })
-  } else {
-    req.send('No user specified');
-  }
+  const userList = service.userList();
+  res.json(userList)
 })
 
 router.get('/api/users', (req, res) => {
