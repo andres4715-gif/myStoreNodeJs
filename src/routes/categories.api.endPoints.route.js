@@ -2,15 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/api/:categoryId/product/:productId/', (req, res) => {
-  const category = req.params.categoryId;
-  const product = req.params.productId;
-  res.json({
-    categoryId: category,
-    producId: product,
-  })
-})
-
 router.get('/', (req, res) => {
   const {categorieId, section, sector} = req.query;
   if (categorieId && section && sector) {
@@ -22,6 +13,15 @@ router.get('/', (req, res) => {
   } else {
     req.send('No category specified');
   }
+})
+
+router.get('/api/:categoryId/product/:productId/', (req, res) => {
+  const category = req.params.categoryId;
+  const product = req.params.productId;
+  res.json({
+    categoryId: category,
+    producId: product,
+  })
 })
 
 router.post('/', (req, res) => {
