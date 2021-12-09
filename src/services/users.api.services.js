@@ -11,6 +11,7 @@ class UsersServices {
     const limit = 15;
     for (let index = 0; index < limit; index++) {
       this.users.push({
+          id: faker.datatype.uuid(),
           firstName: faker.name.firstName(),
           lastName: faker.name.lastName(),
           gender: faker.name.gender(),
@@ -32,6 +33,9 @@ class UsersServices {
     return this.users;
   }
 
+  findOneUser(id) {
+    return this.users.find(item => item.id === id);
+  }
 
   create() {
 

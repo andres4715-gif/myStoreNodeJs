@@ -11,6 +11,12 @@ router.get('/', (req, res) => {
   res.json(userList)
 })
 
+router.get('/:id', (req, res) => {
+  const {id} = req.params;
+  const user = service.findOneUser(id);
+  res.json(user)
+})
+
 router.get('/api/users', (req, res) => {
   const {limit, offset} = req.query;
   if (limit && offset) {
