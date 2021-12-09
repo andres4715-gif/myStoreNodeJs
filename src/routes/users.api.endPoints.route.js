@@ -18,15 +18,8 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/api/users', (req, res) => {
-  const {limit, offset} = req.query;
-  if (limit && offset) {
-    res.json({
-      limit,
-      offset,
-    });
-  } else {
-    res.send('without params');
-  }
+  const apiLinkUsers = service.apiLinkUsers(req, res);
+  res.json(apiLinkUsers);
 })
 
 router.get('/api/usuarios/:user_firstName/:user_lastName/:user_id/', (req, res) => {
