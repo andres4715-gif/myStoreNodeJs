@@ -73,10 +73,6 @@ class ProductsServices {
     }
   }
 
-  create() {
-
-  }
-
   findCartList() {
     return this.cartListProducts;
   }
@@ -121,6 +117,21 @@ class ProductsServices {
     }
   }
 
+  listBigCars(req, res) {
+    const {id, brand, color, model, description} = req.query;
+    res.json({
+      id,
+      brand,
+      color,
+      model,
+      description,
+    })
+  }
+
+  create() {
+
+  }
+
   update() {
 
   }
@@ -130,5 +141,4 @@ class ProductsServices {
   }
 }
 
-module
-  .exports = ProductsServices;
+module.exports = ProductsServices;

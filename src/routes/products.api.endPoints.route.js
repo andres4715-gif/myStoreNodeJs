@@ -41,15 +41,9 @@ router.get('/api/myCars/:brand/:color/:price', (req, res) => {
   res.json(carsList)
 })
 
-router.get('/api/cars2/', (req, res) => {
-  const {id, brand, color, model, description} = req.query;
-  res.json({
-    id,
-    brand,
-    color,
-    model,
-    description,
-  });
+router.get('/api/bigCars/', (req, res) => {
+  const carBigList = service.listBigCars(req, res);
+  res.json(carBigList)
 });
 
 router.post('/', (req, res) => {
