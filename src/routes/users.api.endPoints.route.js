@@ -22,15 +22,9 @@ router.get('/api/users', (req, res) => {
   res.json(apiLinkUsers);
 })
 
-router.get('/api/usuarios/:user_firstName/:user_lastName/:user_id/', (req, res) => {
-  const userFirstName = req.params.user_firstName;
-  const userlastName = req.params.user_lastName;
-  const user_userid = req.params.user_id;
-  res.json({
-    userfirstname: userFirstName,
-    userlastname: userlastName,
-    userid: user_userid,
-  })
+router.get('/api/usuarios/:firstName/:lastName/:id/', (req, res) => {
+  const userListBasicInformation = service.userlistBasicInformation(req, res);
+  res.json(userListBasicInformation);
 })
 
 router.post('/', (req, res) => {

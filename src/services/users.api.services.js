@@ -49,6 +49,17 @@ class UsersServices {
     }
   }
 
+  userlistBasicInformation(req, res) {
+    const user_firstName = req.params.firstName;
+    const user_lastName = req.params.lastName;
+    const user_userid = req.params.id;
+    res.json({
+      user_firstName,
+      user_lastName,
+      user_userid,
+    })
+  }
+
   create() {
 
   }
