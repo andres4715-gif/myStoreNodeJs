@@ -1,9 +1,7 @@
-const ProductsServices = require('./../services/users.api.services');
-
-const service = new ProductsServices();
+const UserServices = require('./../services/users.api.services');
+const service = new UserServices();
 
 const express = require('express');
-
 const router = express.Router();
 
 router.get('/', (req, res) => {

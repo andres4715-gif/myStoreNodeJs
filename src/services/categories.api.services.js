@@ -1,63 +1,36 @@
 const faker = require("faker");
 
-class UsersServices {
+class CategoryServices {
 
   constructor() {
-    this.users = [];
-    this.userGenerator();
+    this.categories = [];
+    this.categoriesGenerator();
   }
 
-  userGenerator() {
-    const limit = 15;
+  categoriesGenerator() {
+    const limit = 16;
     for (let index = 0; index < limit; index++) {
-      this.users.push({
+      this.categories.push({
           id: faker.datatype.uuid(),
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          gender: faker.name.gender(),
-          jobInformation: {
-            jobTitle: faker.name.jobTitle(),
-            jobArea: faker.name.jobArea(),
-            jobType: faker.name.jobType(),
-            finance: {
-              financeAccount: faker.finance.account(),
-              creditCardNumber: faker.finance.creditCardNumber(),
-            }
+          currencyCode: faker.finance.currencyCode(),
+          fileName: faker.system.fileName(),
+          mimeType: faker.system.mimeType(),
+          categorieInformation: {
+            suffixes: faker.company.suffixes(),
+            companyName: faker.company.companyName(),
+            bs: faker.company.bs(),
           }
         }
       )
     }
   }
 
-  userList() {
-    return this.users;
+  categorieList() {
+    return this.categories;
   }
 
-  findOneUser(id) {
-    return this.users.find(item => item.id === id);
-  }
-
-  apiLinkUsers(req, res) {
-    const {limit, offset} = req.query;
-    if (limit && offset) {
-      res.json({
-        limit,
-        offset,
-      });
-    } else {
-      res.send('without params');
-    }
-  }
-
-  userlistBasicInformation(req, res) {
-    const user_firstName = req.params.firstName;
-    const user_lastName = req.params.lastName;
-    const user_userid = req.params.id;
-    res.json({
-      user_firstName,
-      user_lastName,
-      user_userid,
-    })
+  findOneCategory(id) {
+    return this.categories.find(item => item.id === id);
   }
 
   create() {
@@ -73,4 +46,4 @@ class UsersServices {
   }
 }
 
-module.exports = UsersServices;
+module.exports = CategoryServices;

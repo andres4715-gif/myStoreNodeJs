@@ -1,5 +1,4 @@
 const ProductsServices = require('./../services/products.api.services')
-
 const service = new ProductsServices();
 
 const express = require('express');
