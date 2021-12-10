@@ -33,6 +33,17 @@ class CategoryServices {
     return this.categories.find(item => item.id === id);
   }
 
+  categoriesApiList(req, res) {
+    const category = req.params.categoryId;
+    const product = req.params.productId;
+    const serial = req.params.serialId;
+    res.json({
+      category,
+      product,
+      serial,
+    })
+  }
+
   create() {
 
   }

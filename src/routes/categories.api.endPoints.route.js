@@ -15,13 +15,9 @@ router.get('/:id', (req, res) => {
   res.json(category)
 })
 
-router.get('/api/:categoryId/product/:productId/', (req, res) => {
-  const category = req.params.categoryId;
-  const product = req.params.productId;
-  res.json({
-    categoryId: category,
-    producId: product,
-  })
+router.get('/api/:categoryId/product/:productId/serial/:serialId', (req, res) => {
+  const apiCategoriesList = service.categoriesApiList(req, res);
+  res.json(apiCategoriesList);
 })
 
 router.post('/', (req, res) => {
