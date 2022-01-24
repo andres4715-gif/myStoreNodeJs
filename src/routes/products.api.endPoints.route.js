@@ -47,28 +47,24 @@ router.get('/api/bigCars/', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body;
+  const newProduct = service.createNewProduct(body);
   res.status(201).json({
     message: 'created',
-    data: body
+    newProduct,
   })
 })
 
 router.patch('/:id', (req, res) => {
+  const {id} = req.params;
   const body = req.body;
-  const {id} = req.params.id;
-  res.json({
-    message: 'update',
-    data: body,
-    id,
-  })
+  const product = service.updateProduct(id, body);
+  res.json(product);
 })
 
 router.delete('/:id', (req, res) => {
   const {id} = req.params.id;
-  res.json({
-    message: 'product deleted',
-    id,
-  })
+  const rta = service.deleteProduct(id);
+  res.json(rta);
 })
 
 module.exports = router

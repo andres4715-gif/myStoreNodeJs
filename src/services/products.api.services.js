@@ -16,13 +16,13 @@ class ProductsServices {
     for (let index = 0; index < limit; index++) {
       this.products.push({
         id: faker.datatype.uuid(),
+          price: parseInt(faker.commerce.price(), 10),
         dataTypeNumber: faker.datatype.number(),
         image: faker.image.imageUrl(),
         details: {
           productMaterial: faker.commerce.productMaterial(),
           productName: faker.commerce.productName(),
           productDescription: faker.commerce.productDescription(),
-          price: parseInt(faker.commerce.price(), 10),
           finance: {
             accountName: faker.finance.account(),
             bic: faker.finance.bic(),
@@ -128,16 +128,36 @@ class ProductsServices {
     })
   }
 
-  create() {
-
+  createNewProduct(body) {
+    const newProduct = {
+      id: faker.datatype.uuid(),
+      ...body
+    }
+    this.products.push(newProduct);
+    return newProduct;
   }
 
-  update() {
-
+  updateProduct(id, changes) {
+    const index = this.products.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('Product not found');
+    }
+    const product = this.products[index];
+      this.products[index] = {
+        ...product,
+        ...changes
+      }
+      return this.products[index];
   }
 
-  delete() {
-
+  deleteProduct(id) {
+    const index = this.products.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error('Product not found');
+    } else {
+      this.products.splice(index, 1);
+      return {id};
+    }
   }
 }
 
