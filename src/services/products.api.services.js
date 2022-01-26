@@ -153,10 +153,10 @@ class ProductsServices {
   deleteProduct(id) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
-      throw new Error('Product not found');
+      throw new Error('Product not found with id');
     } else {
       this.products.splice(index, 1);
-      return {id};
+      return {status: "deleted", id};
     }
   }
 }

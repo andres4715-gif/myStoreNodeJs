@@ -62,7 +62,7 @@ router.patch('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const {id} = req.params.id;
+  const id = req.params.id;
   const rta = service.deleteProduct(id);
   res.json(rta);
 })
