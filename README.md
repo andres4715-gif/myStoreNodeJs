@@ -19,7 +19,7 @@ This is a fake date json generator that helps to make a fake data to test:
 - To install
 
 - API: [npm faker](https://www.npmjs.com/package/faker)
-
+- LINK: [Documentation](https://www.npmjs.com/package/@faker-js/faker)
 
 ```shell
 $ npm i faker

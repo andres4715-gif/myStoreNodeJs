@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const {id} = req.params;
+  const id = req.params.id;
   const category = service.findOneCategory(id);
-  res.json(category)
+  res.json(category);
 })
 
 router.get('/api/:categoryId/product/:productId/serial/:serialId', (req, res) => {

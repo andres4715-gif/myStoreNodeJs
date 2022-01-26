@@ -8,7 +8,7 @@ class CategoryServices {
   }
 
   categoriesGenerator() {
-    const limit = 16;
+    const limit = 10;
     for (let index = 0; index < limit; index++) {
       this.categories.push({
           id: faker.datatype.uuid(),
@@ -41,7 +41,7 @@ class CategoryServices {
       category,
       product,
       serial,
-    })
+    });
   }
 
   create() {
