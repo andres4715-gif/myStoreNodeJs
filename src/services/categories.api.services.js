@@ -44,8 +44,13 @@ class CategoryServices {
     });
   }
 
-  create() {
-
+  createNewCategorie(body) {
+    const newCategory = {
+      id: faker.datatype.uuid(),
+      ...body
+    }
+    this.categories.push(newCategory);
+    return newCategory;
   }
 
   update() {

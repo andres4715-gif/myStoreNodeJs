@@ -22,10 +22,11 @@ router.get('/api/:categoryId/product/:productId/serial/:serialId', (req, res) =>
 
 router.post('/', (req, res) => {
   const body = req.body;
+  const newCategory = service.createNewCategorie(body);
   res.status(201).json({
     message: 'created',
-    data: body
-  })
+    data: newCategory
+  });
 })
 
 router.patch('/:id', (req, res) => {
