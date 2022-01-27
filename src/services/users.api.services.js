@@ -82,8 +82,14 @@ class UsersServices {
     return this.users[index];
   }
 
-  delete() {
-
+  deleteUser(id) {
+    const index = this.users.findIndex(item => item.id === id);
+    if (index === -1) {
+      throw new Error("User not found with id");
+    } else {
+      this.users.splice(index, 1);
+      return {status: "deleted", id};
+    }
   }
 }
 

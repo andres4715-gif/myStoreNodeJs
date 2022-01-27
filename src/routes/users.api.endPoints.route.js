@@ -43,11 +43,9 @@ router.patch('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const {id} = req.params.id;
-  res.json({
-    message: 'user deleted',
-    id,
-  })
+  const id = req.params.id;
+  const rta = service.deleteUser(id);
+  res.json(rta);
 })
 
 module.exports = router;
