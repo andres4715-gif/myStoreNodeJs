@@ -37,11 +37,10 @@ router.patch('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const {id} = req.params.id;
-  res.json({
-    message: 'category deleted',
-    id,
-  })
+  const id = req.params.id;
+  const rta = service.deleteCategory(id);
+  res.json(rta);
+
 })
 
 module.exports = router;
