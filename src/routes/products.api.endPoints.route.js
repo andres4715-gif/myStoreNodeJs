@@ -4,66 +4,66 @@ const service = new ProductsServices();
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const products = service.find();
+router.get('/', async (req, res) => {
+  const products = await service.find();
   res.json(products);
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const {id} = req.params;
-  const product = service.findOne(id);
+  const product = await service.findOne(id);
   res.json(product);
 })
 
-router.get('/api/myProducts', (req, res) => {
-  const products = service.find();
+router.get('/api/myProducts', async (req, res) => {
+  const products = await service.find();
   res.json(products);
 })
 
-router.get('/api/devices/', (req, res) => {
-  const products = service.findDevices(req, res);
+router.get('/api/devices/', async (req, res) => {
+  const products = await service.findDevices(req, res);
   res.json(products);
 })
 
-router.get('/api/devices/list/', (req, res) => {
-  const products = service.findDevicesList();
+router.get('/api/devices/list/', async (req, res) => {
+  const products = await service.findDevicesList();
   res.json(products);
 })
 
-router.get('/api/cars', (req, res) => {
-  const carsPrducts = service.findCartList();
+router.get('/api/cars', async(req, res) => {
+  const carsPrducts = await service.findCartList();
   res.json(carsPrducts);
 })
 
-router.get('/api/myCars/:brand/:color/:price', (req, res) => {
-  const carsList = service.carsBrandAndColor(req, res);
+router.get('/api/myCars/:brand/:color/:price', async (req, res) => {
+  const carsList = await service.carsBrandAndColor(req, res);
   res.json(carsList)
 })
 
-router.get('/api/bigCars/', (req, res) => {
-  const carBigList = service.listBigCars(req, res);
+router.get('/api/bigCars/', async (req, res) => {
+  const carBigList = await service.listBigCars(req, res);
   res.json(carBigList)
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
-  const newProduct = service.createNewProduct(body);
+  const newProduct = await service.createNewProduct(body);
   res.status(201).json({
     message: 'created',
     newProduct,
   })
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
   const {id} = req.params;
   const body = req.body;
-  const product = service.updateProduct(id, body);
+  const product = await service.updateProduct(id, body);
   res.json(product);
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const id = req.params.id;
-  const rta = service.deleteProduct(id);
+  const rta = await service.deleteProduct(id);
   res.json(rta);
 })
 

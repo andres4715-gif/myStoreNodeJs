@@ -7,7 +7,7 @@ class CategoryServices {
     this.categoriesGenerator();
   }
 
-  categoriesGenerator() {
+  async categoriesGenerator() {
     const limit = 10;
     for (let index = 0; index < limit; index++) {
       this.categories.push({
@@ -25,15 +25,15 @@ class CategoryServices {
     }
   }
 
-  categorieList() {
+  async categorieList() {
     return this.categories;
   }
 
-  findOneCategory(id) {
+  async findOneCategory(id) {
     return this.categories.find(item => item.id === id);
   }
 
-  categoriesApiList(req, res) {
+  async categoriesApiList(req, res) {
     const category = req.params.categoryId;
     const product = req.params.productId;
     const serial = req.params.serialId;
@@ -44,7 +44,7 @@ class CategoryServices {
     });
   }
 
-  createNewCategorie(body) {
+  async createNewCategorie(body) {
     const newCategory = {
       id: faker.datatype.uuid(),
       ...body
@@ -53,7 +53,7 @@ class CategoryServices {
     return newCategory;
   }
 
-  updateCategory(id, changes) {
+  async updateCategory(id, changes) {
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error("Category not found");
@@ -66,7 +66,7 @@ class CategoryServices {
     return this.categories[index];
   }
 
-  deleteCategory(id) {
+  async deleteCategory(id) {
     const index = this.categories.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error("Category not found with id");

@@ -11,12 +11,12 @@ class ProductsServices {
     this.dataGenerator();
   }
 
-  dataGenerator() {
+  async dataGenerator() {
     const limit = 100;
     for (let index = 0; index < limit; index++) {
       this.products.push({
         id: faker.datatype.uuid(),
-          price: parseInt(faker.commerce.price(), 10),
+        price: parseInt(faker.commerce.price(), 10),
         dataTypeNumber: faker.datatype.number(),
         image: faker.image.imageUrl(),
         details: {
@@ -41,7 +41,7 @@ class ProductsServices {
     }
   }
 
-  dataDevicesGenerator() {
+  async dataDevicesGenerator() {
     const limit = 100;
     for (let index = 0; index < limit; index++) {
       this.devicesProducts.push({
@@ -56,7 +56,7 @@ class ProductsServices {
     }
   }
 
-  carsList() {
+  async carsList() {
     const limit = 17;
     for (let index = 0; index < limit; index++) {
       this.cartListProducts.push({
@@ -73,23 +73,23 @@ class ProductsServices {
     }
   }
 
-  findCartList() {
+  async findCartList() {
     return this.cartListProducts;
   }
 
-  findDevicesList() {
+  async findDevicesList() {
     return this.devicesProducts;
   }
 
-  find() {
+  async find() {
     return this.products;
   }
 
-  findOne(id) {
+  async findOne(id) {
     return this.products.find(item => item.id === id);
   }
 
-  findDevices(req, res) {
+  async findDevices(req, res) {
     const {brand, color, price} = req.query;
     if (brand && color && price) {
       res.json({
@@ -102,7 +102,7 @@ class ProductsServices {
     }
   }
 
-  carsBrandAndColor(req, res) {
+  async carsBrandAndColor(req, res) {
     const brand = req.params.brand;
     const color = req.params.color;
     const price = req.params.price;
@@ -117,7 +117,7 @@ class ProductsServices {
     }
   }
 
-  listBigCars(req, res) {
+  async listBigCars(req, res) {
     const {id, brand, color, model, description} = req.query;
     res.json({
       id,
@@ -128,7 +128,7 @@ class ProductsServices {
     })
   }
 
-  createNewProduct(body) {
+  async createNewProduct(body) {
     const newProduct = {
       id: faker.datatype.uuid(),
       ...body
@@ -137,20 +137,20 @@ class ProductsServices {
     return newProduct;
   }
 
-  updateProduct(id, changes) {
+  async updateProduct(id, changes) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error('Product not found');
     }
     const product = this.products[index];
-      this.products[index] = {
-        ...product,
-        ...changes
-      }
-      return this.products[index];
+    this.products[index] = {
+      ...product,
+      ...changes
+    }
+    return this.products[index];
   }
 
-  deleteProduct(id) {
+  async deleteProduct(id) {
     const index = this.products.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error('Product not found with id');

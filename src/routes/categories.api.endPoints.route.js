@@ -4,41 +4,41 @@ const service = new CategoryServices();
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const categoriesListData = service.categorieList();
+router.get('/', async (req, res) => {
+  const categoriesListData = await service.categorieList();
   res.json(categoriesListData);
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const id = req.params.id;
-  const category = service.findOneCategory(id);
+  const category = await service.findOneCategory(id);
   res.json(category);
 })
 
-router.get('/api/:categoryId/product/:productId/serial/:serialId', (req, res) => {
-  const apiCategoriesList = service.categoriesApiList(req, res);
+router.get('/api/:categoryId/product/:productId/serial/:serialId', async (req, res) => {
+  const apiCategoriesList = await service.categoriesApiList(req, res);
   res.json(apiCategoriesList);
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
-  const newCategory = service.createNewCategorie(body);
+  const newCategory = await service.createNewCategorie(body);
   res.status(201).json({
     message: 'created',
     data: newCategory
   });
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
   const {id} = req.params;
   const body = req.body;
-  const category = service.updateCategory(id, body);
+  const category = await service.updateCategory(id, body);
   res.json(category);
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const id = req.params.id;
-  const rta = service.deleteCategory(id);
+  const rta = await service.deleteCategory(id);
   res.json(rta);
 
 })

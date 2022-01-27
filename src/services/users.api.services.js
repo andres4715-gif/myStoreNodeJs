@@ -7,7 +7,7 @@ class UsersServices {
     this.userGenerator();
   }
 
-  userGenerator() {
+  async userGenerator() {
     const limit = 5;
     for (let index = 0; index < limit; index++) {
       this.users.push({
@@ -29,15 +29,15 @@ class UsersServices {
     }
   }
 
-  userList() {
+  async userList() {
     return this.users;
   }
 
-  findOneUser(id) {
+  async findOneUser(id) {
     return this.users.find(item => item.id === id);
   }
 
-  apiLinkUsers(req, res) {
+  async apiLinkUsers(req, res) {
     const {limit, offset} = req.query;
     if (limit && offset) {
       res.json({
@@ -49,7 +49,7 @@ class UsersServices {
     }
   }
 
-  userlistBasicInformation(req, res) {
+  async userlistBasicInformation(req, res) {
     const user_firstName = req.params.firstName;
     const user_lastName = req.params.lastName;
     const user_userid = req.params.id;
@@ -60,7 +60,7 @@ class UsersServices {
     })
   }
 
-  createNewUser(body) {
+  async createNewUser(body) {
     const newUser = {
       id: faker.datatype.uuid(),
       ...body
@@ -69,7 +69,7 @@ class UsersServices {
     return newUser;
   }
 
-  updateUser(id, changes) {
+  async updateUser(id, changes) {
     const index = this.users.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error('User not found');
@@ -82,7 +82,7 @@ class UsersServices {
     return this.users[index];
   }
 
-  deleteUser(id) {
+  async deleteUser(id) {
     const index = this.users.findIndex(item => item.id === id);
     if (index === -1) {
       throw new Error("User not found with id");
