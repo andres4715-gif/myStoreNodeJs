@@ -8,7 +8,7 @@ class UsersServices {
   }
 
   userGenerator() {
-    const limit = 15;
+    const limit = 5;
     for (let index = 0; index < limit; index++) {
       this.users.push({
           id: faker.datatype.uuid(),
@@ -60,8 +60,13 @@ class UsersServices {
     })
   }
 
-  create() {
-
+  createNewUser(body) {
+    const newUser = {
+      id: faker.datatype.uuid(),
+      ...body
+    }
+    this.users.push(newUser);
+    return newUser;
   }
 
   update() {
